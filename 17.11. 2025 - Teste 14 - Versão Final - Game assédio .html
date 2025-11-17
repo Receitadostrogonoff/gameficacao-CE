@@ -1,0 +1,646 @@
+<!-- versão 13 - 14/11/2025 - canteiro de obras - alterado via iA --> 
+  
+  <!DOCTYPE html
+  <html lang="pt">
+    <head>
+    <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Comissão de Ética da Finep</title>
+        
+        <style>
+        /* ==================== ESTILOS ORIGINAIS — NÃO ALTERADOS ==================== */
+        
+        body, html {
+          margin: 0; padding: 0;
+          height: 100%;
+          font-family: 'Segoe UI', Arial, sans-serif;
+          background-color: #F1781B;
+            color: white;
+        }
+      header {
+        background: rgb(0, 80, 81);
+        color: white;
+        padding: 20px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 35px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: color 0.2s;
+      }
+      header nav a:hover {
+        color: #F1781B;
+      }
+      .container {
+        max-width: 1000px;
+        margin: 60px auto;
+        background: rgba(105,80,161,0.9);
+        border-radius: 16px;
+        box-shadow: 0 6px 28px rgba(36,36,36,0.30);
+        padding: 48px;
+        text-align: center;
+      }
+      .container h1, .container h2 {
+        font-weight: 800;
+      }
+      .container p {
+        font-size: 1.18rem;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto 40px auto;
+      }
+      .button-start {
+        background-color: #005051;
+          border: none;
+        padding: 14px 40px;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .button-start:hover {
+        background-color: #003932;
+      }
+      /* Cards */
+        #mainMenu .cards {
+        display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      justify-content: center;
+      max-width: 600px;
+      margin: 0 auto;
+      }
+#mainMenu .card {
+background-color: #005051;
+  border-radius: 12px;
+box-shadow: 0 3px 20px rgba(34,34,34,0.16);
+cursor: pointer;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 20px;
+aspect-ratio: 1 / 1;
+transition: transform 0.13s, box-shadow 0.13s;
+color: white;
+}
+#mainMenu .card:hover {
+transform: scale(1.05);
+box-shadow: 0 8px 36px 4px rgba(34,34,34,0.24);
+}
+#mainMenu .card-title {
+font-size: 1.2rem;
+font-weight: bold;
+margin-bottom: 10px;
+}
+#mainMenu .card-desc {
+font-size: 0.9rem;
+opacity: 0.9;
+}
+
+/* Visual Novel */
+  #visualNovel {
+  display: none;
+position: relative;
+width: 100%;
+height: 700px;
+max-width: 1000px;
+margin: 40px auto;
+border-radius: 16px;
+overflow: hidden;
+box-shadow: 0 6px 28px rgba(36,36,36,0.30);
+background: none;
+color: white;
+font-weight: 600;
+}
+#background {
+position: absolute;
+width: 100%;
+height: 100%;
+background-size: cover;
+background-position: center;
+filter: none;
+z-index: 0;
+}
+#character {
+position: absolute;
+bottom: 150px;
+left: 50%;
+transform: translateX(-50%);
+max-height: 65%;
+z-index: 1;
+}
+#textBox {
+position: absolute;
+bottom: 0;
+width: 100%;
+background: none;
+padding: 20px 40px;
+box-sizing: border-box;
+font-size: 1.2rem;
+min-height: 150px;
+overflow-y: auto;
+color: white;
+z-index: 2;
+text-shadow: 0 0 3px black;
+}
+.choiceBtn {
+  background: #F1781B;
+    border: none;
+  color: white;
+  margin-right: 15px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.choiceBtn:hover {
+  background: #d97704;
+}
+#backBtn {
+margin-top: 20px;
+background: #005051;
+  border: none;
+color: white;
+padding: 10px 18px;
+border-radius: 8px;
+font-weight: 700;
+cursor: pointer;
+}
+
+/* Modal */
+  #infoModal {
+  display:none; 
+position:fixed; 
+top:0; left:0; right:0; bottom:0; 
+background:rgba(0,0,0,0.38); 
+z-index:99; 
+justify-content:center; 
+align-items:center;
+}
+#modalContent {
+background:white; 
+color:#005051; 
+  padding:36px 46px; 
+border-radius:16px; 
+max-width:500px; 
+box-shadow:0 12px 36px rgba(44,44,44,0.36); 
+text-align:left; 
+font-size:1.05rem; 
+position:relative;
+}
+#modalCloseBtn {
+position:absolute; 
+top:12px; 
+right:22px; 
+font-size:1.3rem; 
+cursor:pointer; 
+color:#F1781B;
+  }
+</style>
+  </head>
+  
+  <body>
+  
+  <header>
+  <div style="font-size: 1.6rem; font-weight: 800;">Comissão de Ética da Finep</div>
+    <nav>
+    <a href="#" id="homeLink">Cordialidade e Respeito</a>
+      <a href="#" id="sobreLink">Sobre o Jogo</a>
+        <a href="#" id="fontesLink">Fontes</a>
+          <a href="#" id="contatoLink">Contato</a>
+            </nav>
+            </header>
+            
+            <!-- Modal -->
+            <div id="infoModal">
+              <div id="modalContent">
+                <span id="modalCloseBtn">×</span>
+                  <div id="infoText"></div>
+                    </div>
+                    </div>
+                    
+                    <!-- Página Inicial -->
+                    <div class="container" id="introContainer">
+                      <h1>Bem-vindos ao jogo educativo da Comissão de Ética da Finep</h1>
+                      <p>Nosso compromisso é garantir um ambiente de trabalho saudável, justo e respeitoso para todos.</p>
+                      <button class="button-start" id="startButton">Começar a Jornada Educativa</button>
+                        </div>
+                        
+                        <!-- Menu principal -->
+                        <div class="container" id="mainMenu" style="display:none;">
+                          <h2>Tipos de Assédio</h2>
+                          <div class="cards">
+                            <div class="card" data-scenario="moral">
+                              <div class="card-title">Assédio Moral</div>
+                                <div class="card-desc">Humilhações e constrangimentos no trabalho</div>
+                                  </div>
+                                  <div class="card" data-scenario="cyberbullying">
+                                    <div class="card-title">Cyberbullying</div>
+                                      <div class="card-desc">Perseguição em ambientes digitais</div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        
+                                        <!-- Visual Novel -->
+                                        <div id="visualNovel">
+                                          <div id="background"></div>
+                                            <img id="character" src="" alt="Personagem" />
+                                              <div id="textBox">
+                                                <div id="narrationText"></div>
+                                                  <div id="choices"></div>
+                                                    <button id="backBtn" style="display:none;">Voltar ao menu</button>
+                                                      </div>
+                                                      </div>
+                                                      
+                                                      <script>
+                                                      /* ==================== JSON ORIGINAL — NÃO ALTERADO ==================== */
+                                                      
+                                                      const introContainer = document.getElementById('introContainer');
+                                                      const mainMenu = document.getElementById('mainMenu');
+                                                      const visualNovel = document.getElementById('visualNovel');
+                                                      const background = document.getElementById('background');
+                                                      const characterImg = document.getElementById('character');
+                                                      const narrationText = document.getElementById('narrationText');
+                                                      const choicesDiv = document.getElementById('choices');
+                                                      const backBtn = document.getElementById('backBtn');
+                                                      const homeLink = document.getElementById('homeLink');
+                                                      const startButton = document.getElementById('startButton');
+                                                      
+                                                      /* =================================================
+                                                        SEU BLOCO DE CENÁRIOS INTEIRO MANTIDO COMO ESTAVA
+                                                      =================================================== */
+                                                        
+                                                        const scenarios = {
+                                                          // https://postimg.cc/gallery/5QG7St6  - galeria de hospedagem
+                                                           //https://i.postimg.cc/gallery/qzjbb9F
+                                                          
+                                                          moral: {
+                                                            script: [
+                                                            
+                                                              // Cenário 01 - Assédio Moral
+                                                              
+                                                              
+                                                              
+// cena 01- introdução felipe - Modificado em 14/11
+{
+  text: 'Felipe chega ao trabalho animado. No caminho até a sala de reunião, pensa:\n"Hoje eu poderia tentar aquela ideia nova… quem sabe dá certo."',
+  image: 'https://i.postimg.cc/21nHBW5b/scene01.jpg',
+  choices: [{ text: 'Continuar', next: 1 }]
+},
+
+// cena 02 - Renato interrompe felipe
+{
+  text: 'Assim que Felipe começa a comentar sobre suas ideias, Renato — sentado logo à frente — corta a conversa com um tom impaciente:\n"Felipe, vamos com calma. Esse não é o momento pra essas coisas. Aqui a gente precisa entregar, não ficar viajando. Se não acompanhar o ritmo, só complica pra todo mundo."',
+  image: 'https://i.postimg.cc/k2WjtS5V/scene02.jpg',
+  choices: [{ text: 'Ouvir em silêncio', next: 2 }]
+},
+                                                              
+ // cena 03 - renato humilha felipe na reunião
+  {
+    text: 'Renato continua a criticar Felipe diante de todos:\n"Essa ideia é inútil Felipe! Como sempre! Você complica coisas simples. Não vamos perder tempo com você!"',
+    image: 'https://i.postimg.cc/tsFrV6gV/scene03.jpg',
+    choices: [{ text: 'Sentir o impacto', next: 3 }]
+  },
+
+  // cena 04 - felipe abalado
+  {
+    text: 'Felipe se sente constrangido e fica pensativo sobre a situação:\n"Será que sou mesmo incapaz? Ou será que ele faz isso de propósito para me diminuir?"',
+    image: 'https://i.postimg.cc/gx3M6h0L/scene04.jpg',
+    choices: [{ text: 'Desabafar com Carlos', next: 4 }]
+  },
+
+  // cena 05 - felipe procura carlos
+  {
+    text: 'Felipe procura o colega Carlos:\n"Não aguento mais… o Renato sempre me critica, me expõe e me humilha nas reuniões. Será que isso é assédio moral?"',
+    image: 'https://i.postimg.cc/Mn1sjBG1/scene05.jpg',
+    choices: [{ text: 'Ouvir Carlos', next: 5 }]
+  },
+
+  // cena 06 - carlos explica
+  {
+    text: 'Carlos responde com seriedade:\n"Sim, Felipe. Isso é assédio moral. Ele te humilha na frente dos outros, menospreza suas ideias e tenta acabar com sua autoestima."',
+    image: 'https://i.postimg.cc/3k2LDGwg/scene06.jpg',
+    choices: [{ text: 'Refletir sobre o que fazer', next: 6 }]
+  },
+
+  // cena 07 - felipe refletindo
+  {
+    text: 'Felipe respira fundo e pensa: "Preciso tomar uma decisão... não posso deixar isso me destruir."',
+    image: 'https://i.postimg.cc/9Dyxq9fP/scene07.jpg',
+    choices: [
+      { text: 'Ignorar e sofrer em silêncio', next: 7 },
+      { text: 'Responder com raiva e se prejudicar ainda mais', next: 8 },
+      { text: 'Denunciar no Fala.BR e buscar apoio', next: 9 }
+    ]
+  },
+
+  // cena 08 - consequência: ignorar o problema
+  {
+    text: 'Ignorar o problema pode piorar a situação e afetar sua saúde emocional e física.',
+    image: 'https://i.postimg.cc/hXVC7mGb/scene08.jpg',
+    choices: [{ text: 'Voltar ao menu', next: null }]
+  },
+
+  // cena 09 - consequência: agir com raiva
+  {
+    text: 'Responder com agressividade aumenta o conflito e prejudica seu trabalho e sua saúde.',
+    image: 'https://i.postimg.cc/QBsfgMBK/scene09.jpg',
+    choices: [{ text: 'Voltar ao menu', next: null }]
+  },
+
+  // cena 10 - decisão: denunciar
+  {
+    text: 'Felipe decide denunciar no Fala.BR.',
+    image: 'https://i.postimg.cc/Mcx90Gcy/scene10.jpg',
+    choices: [{ text: 'Continuar', next: 10 }]
+  },
+
+  // cena 11 - como denunciar
+  {
+    text: 'Felipe acessou a plataforma no endereço: falabr.cgu.gov.br.',
+    image: 'https://i.postimg.cc/TKnkWbPP/scene11.jpg',
+    choices: [{ text: 'Continuar', next: 11 }]
+  },
+
+  // cena 12 - passo 1
+  {
+    text: 'Felipe clicou em "Ouvidoria" para usuários dos serviços públicos ou "Ouvidoria Interna" para servidores.',
+    image: 'https://i.postimg.cc/1gPv0zgD/scene12.jpg',
+    choices: [{ text: 'Continuar', next: 12 }]
+  },
+
+  // cena 13 - passo 2
+  {
+    text: 'Felipe descreveu provas como mensagens, vídeos ou testemunhos.',
+    image: 'https://i.postimg.cc/gwdgy0wh/scene13.jpg',
+    choices: [{ text: 'Continuar', next: 13 }]
+  },
+
+  // cena 14 - passo 3
+  {
+    text: 'Felipe enviou a denúncia e guardou o protocolo para acompanhar.\nA ouvidoria analisará e encaminhará para apuração formal.',
+    image: 'https://i.postimg.cc/1V5nxBLc/scene14.jpg',
+    choices: [{ text: 'Continuar', next: 14 }]
+  },
+
+  // cena 15 - mediação e apoio
+  {
+    text: 'Felipe recebeu apoio e a situação foi mediada:\n"Denunciar protege minha saúde mental e ajuda a criar um ambiente mais justo."',
+    image: 'https://i.postimg.cc/v1M07m1z/scene15.jpg',
+    choices: [{ text: 'Mensagem final educativa', next: 15 }]
+  },
+
+  // cena 16 - narrador
+  {
+    text: 'Narrador: "Você tem o direito de trabalhar em um ambiente respeitoso.\nNunca ignore assédio moral. Denuncie no Fala.BR e proteja seus direitos!"',
+    image: 'https://i.postimg.cc/7CDK1LCN/scene16.jpg',
+    choices: [{ text: 'Voltar ao menu', next: null }]
+  }
+]
+},
+                                                          
+                                                          // Cenário 02 - cyberbullying - gerar imagens - 07/11/2025
+                                                          
+                                                          
+                                                          cyberbullying: {
+                                                            script: [
+                                                              
+                                                              //cena 01 - carlos na frente do pc feliz
+                                                              
+                                                             
+                                                              {
+                                                                text: 'Carlos inicia mais uma partida online de seu jogo favorito.\n"Quero me divertir e apoiar este time que demoramos para construir."',
+                                                                image: 'https://i.postimg.cc/9zptDnSB/scene01.jpg',
+                                                                choices: [{ text: 'Começar a jogar', next: 1 }]
+                                                              },
+                                                              
+                                                              //cena 02 - mostrar o chat no pc
+                                                              
+                                                              
+                                                              {
+                                                                text: 'Durante a partida, um jogador manda no chat:\n"Olha o Carlos, o noob do time! Sempre perde e atrapalha!"',
+                                                                image: 'https://i.postimg.cc/hfZLr7Kn/scene02.jpg',
+                                                                choices: [{ text: 'Ignorar e continuar jogando', next: 2 }]
+                                                              },
+                                                              
+                                                              // cena 03 - mostrar o pc novamente
+                                                              
+                                                              
+                                                              {
+                                                                text: 'Mais mensagens chegam:\n"Vai arrumar outro hobby seu lixo!"\n"Melhor ficar fora da nossa equipe!"',
+                                                                image: 'https://i.postimg.cc/9rgdpqch//scene03.jpg',
+                                                                choices: [{ text: 'Ficar calado', next: 3 }]
+                                                              },
+                                                              
+                                                              // cena 04 - mostra carlos triste
+                                                              
+                                                              
+                                                              {
+                                                                text: 'Um vídeo editado circula no grupo, zombando do jeito que Carlos joga e fala.\nCarlos se sente humilhado e isolado.',
+                                                                image: 'https://i.postimg.cc/QHYQbWjX/scene04.jpg',
+                                                                choices: [{ text: 'Desabafar com a amiga Lara', next: 4 }]
+                                                              },
+                                                              
+                                                              // cena 05 - mostrar lara e carlos na sla                                             
+                                                              {
+                                                                text: 'Carlos conta para Lara:\n"Não sei mais o que fazer, sempre me ofendem e me excluem dos grupos de jogo."',
+                                                                image: 'https://i.postimg.cc/7ft3VTqw/scene05.jpg',
+                                                                choices: [{ text: 'Ouvir o conselho de Lara', next: 5 }]
+                                                              },
+                                                              
+                                                              // cena 06 - Lara explicando
+                                                              
+                                                              
+                                                              {
+                                                                text: 'Lara explica:\n"Cyberbullying é o uso da internet para causar sofrimento, seja por mensagens, exclusão ou divulgação de conteúdo negativo. É sério e afeta a autoestima."',
+                                                                image: 'https://i.postimg.cc/1f7GHNyV/scene06.jpg',
+                                                                choices: [{ text: 'Avaliar opções', next: 6 }]
+                                                              },
+                                                              
+                                                              // cena 07 - Carlos pensando
+                                                              
+                                                              {
+                                                                text: 'Carlos pensa, o que eu posso fazer para melhorar a minha situação?',
+                                                                image: 'https://i.postimg.cc/56KB3FfC/scene07.jpg',
+                                                                choices: [
+                                                                  { text: 'Ignorar e deixar o grupo', next: 7 },
+                                                                  { text: 'Enfrentar os agressores no chat', next: 8 },
+                                                                  { text: 'Denunciar o abuso no jogo e buscar ajuda dos pais', next: 9 }
+                                                                ]
+                                                              },
+                                                              
+                                                              
+                                                              // cena 08 - carlos toma atitude
+                                                              
+                                                              
+                                                              {
+                                                                text: 'Carlos sai do grupo, se afasta de todos para se proteger, mas sente-se sozinho e excluído.',
+                                                                image: 'https://i.postimg.cc/ykpmPS7g/scene08.jpg',
+                                                                choices: [{ text: 'Voltar ao menu', next: null }]
+                                                              },
+                                                              
+                                                              // cena 09 - Lara alerta
+                                                              
+                                                              
+                                                              {
+                                                                text: 'Lara alerta:\n"Enfrentar pode piorar e provocar ataques ainda maiores."',
+                                                                image: 'https://i.postimg.cc/6ybr0GBZ/scene09.jpg',
+                                                                choices: [{ text: 'Voltar ao menu', next: null }]
+                                                              },
+                                                              
+                                                              // cena 10 - carlos denuncia
+                                                              
+                                                              
+                                                              {
+                                                                text: 'Carlos decide denunciar os abusos utilizando os canais da plataforma do jogo e conversa com os pais e a escola para ter suporte.',
+                                                                image: 'https://i.postimg.cc/75CgQYLn/scene10.jpg',
+                                                                choices: [{ text: 'Continuar', next: 10 }]
+                                                              },
+                                                              
+                                                              // cena 11 - carlos calmo
+                                                              
+                                                              
+                                                              {
+                                                                text: 'Com apoio, Carlos recupera confiança:\n"Denunciar foi fundamental para meu bem-estar e para combater esses ataques."',
+                                                                image: 'https://i.postimg.cc/687d15QC/scene11.jpg',
+                                                                choices: [{ text: 'Mensagem final educativa', next: 11 }]
+                                                              },
+                                                              
+                                                              // cena 12 - Narrador
+                                                              
+                                                              
+                                                              {
+                                                                text: 'Narrador: "Cyberbullying em jogos online é grave e pode causar danos profundos. Use as ferramentas de denúncia, fale com pessoas de confiança e preserve seu direito a um ambiente seguro."',
+                                                                image: 'https://i.postimg.cc/sMBp0D2P/scene12.jpg',
+                                                                choices: [{ text: 'Voltar ao menu', next: null }]
+                                                              }
+                                                            ]
+                                                          }
+                                                        };
+                                                        
+                                                        
+                                                        /* ======================== LÓGICA DO JOGO ======================== */
+                                                          
+                                                          let currentScenario = null;
+                                                          let currentStep = 0;
+                                                          
+                                                          startButton.onclick = () => {
+                                                            introContainer.style.display = 'none';
+                                                            mainMenu.style.display = 'block';
+                                                          };
+                                                          
+                                                          document.querySelectorAll('#mainMenu .card').forEach(card => {
+                                                            card.addEventListener('click', () => {
+                                                              const s = card.getAttribute('data-scenario');
+                                                              startScenario(s);
+                                                            });
+                                                          });
+                                                          
+                                                          function startScenario(name) {
+                                                            currentScenario = scenarios[name];
+                                                            currentStep = 0;
+                                                            mainMenu.style.display = 'none';
+                                                            visualNovel.style.display = 'block';
+                                                            showStep();
+                                                          }
+                                                          
+                                                          function showStep() {
+                                                            const step = currentScenario.script[currentStep];
+                                                            narrationText.textContent = step.text;
+                                                            background.style.backgroundImage = `url(${step.image})`;
+                                                            
+                                                            if (step.characterImage) {
+                                                              characterImg.src = step.characterImage;
+                                                              characterImg.style.display = 'block';
+                                                            } else {
+                                                              characterImg.style.display = 'none';
+                                                            }
+                                                            
+                                                            choicesDiv.innerHTML = '';
+                                                            step.choices.forEach(choice => {
+                                                              const btn = document.createElement('button');
+                                                              btn.className = 'choiceBtn';
+                                                              btn.textContent = choice.text;
+                                                              btn.onclick = () => {
+                                                                if (choice.next === null) backToMenu();
+                                                                else { currentStep = choice.next; showStep(); }
+                                                              };
+                                                              choicesDiv.appendChild(btn);
+                                                            });
+                                                            
+                                                            backBtn.style.display = (currentStep > 0) ? 'inline-block' : 'none';
+                                                          }
+                                                          
+                                                          function backToMenu() {
+                                                            visualNovel.style.display = 'none';
+                                                            mainMenu.style.display = 'block';
+                                                          }
+                                                          
+                                                          backBtn.onclick = backToMenu;
+                                                          homeLink.onclick = (e) => { e.preventDefault(); backToMenu(); };
+                                                          
+                                                          /* ==================== MODAL DE INFORMAÇÕES ==================== */
+                                                            
+                                                            const infoTexts = {
+                                                              cordialidade: `
+                                                              <h2 style="color:#F1781B;">Cordialidade e Respeito</h2>
+                                                                <p>A Comissão de Ética da Finep acredita que um ambiente de trabalho saudável só se constrói com cordialidade, respeito e empatia entre todos.</p>
+                                                                `,
+                                                              sobre: `
+                                                              <h2 style="color:#F1781B;">Sobre o Jogo</h2>
+                                                                <p>Este jogo educativo é uma iniciativa da Comissão de Ética da Finep para sensibilizar e informar sobre temas como assédio moral e cyberbullying.</p>
+                                                                `,
+                                                              fontes: `
+                                                              <h2 style="color:#F1781B;">Fontes</h2>
+                                                                <ul>
+                                                               <li><a href="http://www.finep.gov.br/images/a-finep/codigo-de-etica-e-conduta/Codigo_de_Etica.pdf" target="_blank">Código de Ética, Conduta e Integridade da Finep</a></li>
+                                                                <li>Lei nº 8.112/1990.</li>
+                                                                
+                                                                <li><a href="https://falabr.cgu.gov.br/" target="_blank">Fala.BR</a></li>
+                                                                
+                                                                <li><a href="https://www.gov.br/mcom/pt-br/canais_atendimento/corregedoria/arquivos/CartilhaAssdioMCom.pdf/@@download/file" target="_blank">Cartilha Assédio - MCOM</a></li>
+                                                                <li><a href="https://www.gov.br/mec/pt-br/centrais-de-conteudo/publicacoes/cartilha_escola_segura.pdf" target="_blank">Cartilha Escola Segura - MEC</a></li>
+                                                                
+                                                                
+                                                                <li><a href="https://defensoria.sc.def.br/uploads/cartilhas/anexos/Cartilha_bullying_e_cyberbullying_compressed_6877fbced5ccb.pdf"target="_blank"> Cartilha Bullying e Cyberbullying - Defensoria pública - SC</a></li>
+                                                                
+                                                                  </ul>
+                                                                  `
+                                                                  ,
+                                                                contato: `
+                                                                <h2 style="color:#F1781B;">Contato</h2>
+                                                                  <ul>
+                                                                  <li>E-mail: etica@finep.gov.br</li>
+                                                                  
+                                                                  </ul>
+                                                                  `
+                                                            };
+                                                          
+                                                          function showInfoModal(type) {
+                                                            document.getElementById('infoText').innerHTML = infoTexts[type];
+                                                            document.getElementById('infoModal').style.display = 'flex';
+                                                          }
+                                                          
+                                                          document.getElementById('modalCloseBtn').onclick =
+                                                            () => document.getElementById('infoModal').style.display = 'none';
+                                                          
+                                                          document.getElementById('sobreLink').onclick = (e) => { e.preventDefault(); showInfoModal('sobre'); };
+                                                          document.getElementById('fontesLink').onclick = (e) => { e.preventDefault(); showInfoModal('fontes'); };
+                                                          document.getElementById('contatoLink').onclick = (e) => { e.preventDefault(); showInfoModal('contato'); };
+                                                          document.getElementById('homeLink').onclick = (e) => { e.preventDefault(); showInfoModal('cordialidade'); };
+                                                          
+                                                          </script>
+                                                            
+                                                            </body>
+                                                            </html>
+                                                            
